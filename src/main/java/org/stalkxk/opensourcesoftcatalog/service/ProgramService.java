@@ -33,6 +33,11 @@ public class ProgramService {
     }
 
     @Transactional(readOnly = true)
+    public Page<Program> findByTitle(String programName, Pageable pageable) {
+        return programRepository.findAllByProgramNameContains(programName, pageable);
+    }
+
+    @Transactional(readOnly = true)
     public Page<Program> findAllProgram(Pageable pageable){
         return programRepository.findAll(pageable);
     }

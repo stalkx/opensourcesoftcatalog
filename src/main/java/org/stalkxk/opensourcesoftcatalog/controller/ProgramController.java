@@ -41,6 +41,11 @@ public class ProgramController {
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(programService.findAllByCategory(id, pageable));
     }
 
+    @GetMapping("/search/{programName}")
+    public ResponseEntity<Page<Program>> getAllProgramByTitle(@PathVariable String programName, Pageable pageable){
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(programService.findByTitle(programName,pageable));
+    }
+
     @PostMapping("/save")
     @Secured("ROLE_ADMIN")
     public ResponseEntity<?> saveProgram(@RequestBody Program program){

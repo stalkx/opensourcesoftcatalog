@@ -10,4 +10,5 @@ import org.stalkxk.opensourcesoftcatalog.entity.Program;
 @Repository
 public interface ProgramRepository extends JpaRepository<Program, Integer> {
     Page<Program> findAllByCategory(Category category, Pageable pageable);
+    Page<Program> findAllByProgramNameContains(String programName, Pageable pageable);
 }
