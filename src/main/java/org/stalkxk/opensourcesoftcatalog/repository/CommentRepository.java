@@ -1,0 +1,13 @@
+package org.stalkxk.opensourcesoftcatalog.repository;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import org.stalkxk.opensourcesoftcatalog.entity.Comment;
+import org.stalkxk.opensourcesoftcatalog.entity.Program;
+
+@Repository
+public interface CommentRepository extends JpaRepository<Comment, Integer> {
+    Page<Comment> findAllByProgram(Program program, Pageable pageable);
+}
