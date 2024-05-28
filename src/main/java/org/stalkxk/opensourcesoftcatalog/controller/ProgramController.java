@@ -8,6 +8,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
+import org.stalkxk.opensourcesoftcatalog.entity.Comment;
 import org.stalkxk.opensourcesoftcatalog.entity.Program;
 import org.stalkxk.opensourcesoftcatalog.exception.AppException;
 import org.stalkxk.opensourcesoftcatalog.service.ProgramService;
@@ -33,6 +34,11 @@ public class ProgramController {
         }else {
             return ResponseEntity.badRequest().contentType(MediaType.APPLICATION_JSON).body(new AppException(HttpStatus.NOT_FOUND.value(), "Дані відстутні"));
         }
+    }
+
+    @GetMapping("/category/{id}")
+    public ResponseEntity<Page<Program>> findByProgramId(@PathVariable Integer id, Pageable pageable){
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(programService.findAllByCategory(id, pageable));
     }
 
     @PostMapping("/save")

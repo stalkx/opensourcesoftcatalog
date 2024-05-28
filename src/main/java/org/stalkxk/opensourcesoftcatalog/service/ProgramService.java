@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.stalkxk.opensourcesoftcatalog.entity.Category;
 import org.stalkxk.opensourcesoftcatalog.entity.Program;
 import org.stalkxk.opensourcesoftcatalog.repository.ProgramRepository;
 
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Transactional
 public class ProgramService {
     private final ProgramRepository programRepository;
+    private final CategoryService categoryService;
 
     public Program saveProgram(Program program){
         return programRepository.save(program);
@@ -23,6 +25,11 @@ public class ProgramService {
     @Transactional(readOnly = true)
     public Optional<Program> findById(Integer programId){
         return programRepository.findById(programId);
+    }
+
+    public Page<Program> findAllByCategory(Integer categoryId, Pageable pageable){
+        Category category = categoryService.findById(categoryId).orElseThrow();
+        return programRepository.findAllByCategory(category, pageable);
     }
 
     @Transactional(readOnly = true)
