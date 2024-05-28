@@ -11,7 +11,6 @@ public class RegistrationUserDto {
      * Логін користувача.
      */
     private String login;
-    private String fullName;
     private Role role;
     /**
      * Пароль користувача.

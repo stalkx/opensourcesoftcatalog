@@ -18,6 +18,7 @@ import org.stalkxk.opensourcesoftcatalog.exception.AppException;
 import org.stalkxk.opensourcesoftcatalog.service.UserService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Клас-контролер для автентифікації та реєстрації користувачів.
@@ -76,6 +77,6 @@ public class AuthController {
     @CrossOrigin(origins = "http://localhost:5173/")
     public ResponseEntity<?> remove(@RequestBody User user){
         userService.removeUser(user);
-        return ResponseEntity.ok("Аккаунт успішно видалений");
+        return ResponseEntity.ok(Map.of("massage", "Аккаунт успішно видалено"));
     }
 }
