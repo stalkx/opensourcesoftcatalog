@@ -70,7 +70,7 @@ public class AuthController {
             return new ResponseEntity<>(new AppException(HttpStatus.BAD_REQUEST.value(), "Користувач уже існує!!!!"), HttpStatus.BAD_REQUEST);
         }
         userService.saveUser(registrationUserDto);
-        return ResponseEntity.ok("Успішна реєстрація");
+        return ResponseEntity.ok(Map.of("massage", "Успішна реєстрація"));
     }
 
     @PostMapping("/remove")
