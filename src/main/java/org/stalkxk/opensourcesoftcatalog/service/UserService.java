@@ -106,6 +106,10 @@ public class UserService implements UserDetailsService {
         return userRepository.save(user);
     }
 
+    public Page<User> findAllByLogin(String login, Pageable pageable){
+        return userRepository.findAllByLoginContains(login, pageable);
+    }
+
     /**
      * Завантажує дані користувача за логіном.
      *

@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
+import org.stalkxk.opensourcesoftcatalog.entity.Program;
 import org.stalkxk.opensourcesoftcatalog.entity.User;
 import org.stalkxk.opensourcesoftcatalog.service.UserService;
 
@@ -25,6 +26,11 @@ public class UserController {
     @GetMapping
     public ResponseEntity<Page<User>> findAllUser(Pageable pageable){
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(userService.findAllUsers(pageable));
+    }
+
+    @GetMapping("/search/{login}")
+    public ResponseEntity<Page<User>> getAllProgramByTitle(@PathVariable String login, Pageable pageable){
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(userService.findAllByLogin(login,pageable));
     }
 
     @GetMapping("/{id}")
