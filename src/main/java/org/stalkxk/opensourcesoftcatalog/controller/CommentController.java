@@ -26,13 +26,11 @@ public class CommentController {
     private final CommentService commentService;
 
     @GetMapping
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public Page<Comment> getAllComment(Pageable pageable){
         return commentService.findAllComment(pageable);
     }
 
     @GetMapping("/{id}")
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<?> findById(@PathVariable Integer id){
         if(commentService.findById(id).isPresent()){
             return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(commentService.findById(id).get());
@@ -42,14 +40,12 @@ public class CommentController {
     }
 
     @GetMapping("/average/{programId}")
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<?> getAverageRating(@PathVariable Integer programId, Pageable pageable) {
         Double averageRating = commentService.calculateAverageRating(programId, pageable);
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(Map.of("averageRating", averageRating));
     }
 
     @GetMapping("/program/{id}")
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     public ResponseEntity<Page<Comment>> findByProgramId(@PathVariable Integer id, Pageable pageable){
 //        Pageable sortedByDateDesc = PageRequest.of(pageable.getPageNumber(), pageable.getPageSize(), Sort.by("addedAt").descending());
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(commentService.findAllByProgram(id, pageable));
