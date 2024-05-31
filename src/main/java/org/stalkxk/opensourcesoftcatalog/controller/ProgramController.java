@@ -37,7 +37,7 @@ public class ProgramController {
     }
 
     @GetMapping("/category/{id}")
-    public ResponseEntity<Page<Program>> findByProgramId(@PathVariable Integer id, Pageable pageable){
+    public ResponseEntity<Page<Program>> findAllByCategory(@PathVariable Integer id, Pageable pageable){
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(programService.findAllByCategory(id, pageable));
     }
 
