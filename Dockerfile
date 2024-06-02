@@ -6,11 +6,8 @@ WORKDIR /app
 # Copy the Maven descriptor file to the container
 COPY pom.xml ./
 
-# Install Maven and clean up afterwards
-RUN apt-get update \
-    && apt-get install -y maven \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# Install Maven
+RUN apt-get update && apt-get install -y maven
 
 # Copy the source code to the container
 COPY src ./src
