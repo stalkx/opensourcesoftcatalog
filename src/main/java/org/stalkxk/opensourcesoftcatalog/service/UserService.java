@@ -101,8 +101,18 @@ public class UserService implements UserDetailsService {
         User user = findById(updatedUser.getUserId()).orElseThrow();
         user.setUserId(updatedUser.getUserId());
         user.setLogin(updatedUser.getLogin());
+        user.setPassword(updatedUser.getPassword());
+        user.addRole(updatedUser.getRoles().get(0));
+
+        return userRepository.save(user);
+    }
+
+    public User updateUserPassword(User updatedUser){
+        User user = findById(updatedUser.getUserId()).orElseThrow();
+        user.setUserId(updatedUser.getUserId());
+        user.setLogin(updatedUser.getLogin());
         user.setPassword(passwordEncoder.encode(updatedUser.getPassword()));
-        user.setRoles(updatedUser.getRoles());
+        user.addRole(updatedUser.getRoles().get(0));
         return userRepository.save(user);
     }
 

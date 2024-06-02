@@ -11,6 +11,5 @@ spring:
         database: postgresql  # H2 database platform
 jwt:
     secret: 984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf
-    lifetime: 120m  # JWT token lifetime (2 minutes)
-    
+    lifetime: 120000m
     

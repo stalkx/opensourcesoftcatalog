@@ -43,6 +43,12 @@ public class UserController {
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(userService.updateUser(user));
     }
 
+    @PostMapping("/update-password")
+    public ResponseEntity<User> updateUserPassword(@RequestBody User user){
+        System.out.println(user.getRoles());
+        return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON).body(userService.updateUserPassword(user));
+    }
+
     @PostMapping("/remove")
     public ResponseEntity<?> remove(@RequestBody User user){
         userService.removeUser(user);
