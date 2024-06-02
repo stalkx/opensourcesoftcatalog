@@ -9,11 +9,6 @@ spring:
     jpa:
         show-sql: true  # Log SQL statements for debugging
         database: postgresql  # H2 database
-    sql:
-      init:
-          mode: always
-          schema-locations: classpath*:shema.sql
-          data-locations: classpath*:data.sql
 jwt:
     secret: 984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf
     lifetime: 120000m
